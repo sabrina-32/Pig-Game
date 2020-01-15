@@ -2,7 +2,7 @@
 
 
 
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
@@ -11,6 +11,10 @@ init();
  
 
 document.querySelector('.btn-roll').addEventListener('click',  function(){
+
+  if(gamePlaying){
+
+  
     //  1. random num,
 
   var  dice = Math.floor(Math.random()*6)+1;
@@ -44,8 +48,9 @@ else{
    nextPlayer();
 
 
-}
+    }
 
+  }
 
 });
 
@@ -55,37 +60,38 @@ else{
 
 document.querySelector('.btn-hold').addEventListener('click',  function(){
 
-  // add  current  score  to  global  score
-
-  scores[activePlayer] +=roundScore;
+  if(gamePlaying){
+    scores[activePlayer] +=roundScore;
 
   
 
-  //update UI
-
-document.querySelector('#score-'+activePlayer).textContent = scores[activePlayer];
-
-
-  //check  if  player  won  the game
-
-  if(scores[activePlayer]>=20){
-    document.querySelector('#name-'+activePlayer).textContent = 'Winner!';
-
-    document.querySelector('.dice').style.display = 'none';
-
-    document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
-    document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
-
+    //update UI
+  
+  document.querySelector('#score-'+activePlayer).textContent = scores[activePlayer];
+  
+  
+    //check  if  player  won  the game
+  
+    if(scores[activePlayer]>=20){
+      document.querySelector('#name-'+activePlayer).textContent = 'Winner!';
+  
+      document.querySelector('.dice').style.display = 'none';
+  
+      //document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
+      //document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
+  
+      gamePlaying = false;
+  
+    }
+    else{
+      nextPlayer(); 
+  
+    }
+  
 
   }
-  else{
-    nextPlayer(); 
 
-  }
-
-
-// hold  the  score  & pass  to  next  player
-
+  
 });
 
 function nextPlayer(){
@@ -117,7 +123,7 @@ scores = [0,0];
 roundScore =0;
 activePlayer  =0;
 
-var gamePlaying = true;
+ gamePlaying = true;
 
 
 document.querySelector('.dice').style.display = 'none';
