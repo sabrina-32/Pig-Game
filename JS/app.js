@@ -15,7 +15,7 @@ document.querySelector('.btn-roll').addEventListener('click',  function(){
   if(gamePlaying){
 
   
-    //  1. random num,
+    //  1. random num
 
   var  dice = Math.floor(Math.random()*6)+1;
 
@@ -77,8 +77,8 @@ document.querySelector('.btn-hold').addEventListener('click',  function(){
   
       document.querySelector('.dice').style.display = 'none';
   
-      //document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
-      //document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
+      document.querySelector('.player-'+activePlayer+'-panel').classList.remove('active');
+      document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
   
       gamePlaying = false;
   
@@ -140,7 +140,7 @@ document.querySelector('.player-1-panel').classList.remove = ('Winner');
 document.querySelector('.player-0-panel').classList.remove = ('Winner');
 
 document.querySelector('.player-0-panel').classList.remove = ('active');
-document.querySelector('.player-1-panel').classList.remove = ('Winner');
+document.querySelector('.player-1-panel').classList.remove = ('active');
 document.querySelector('.player-0-panel').classList.add = ('active');
 
 }
